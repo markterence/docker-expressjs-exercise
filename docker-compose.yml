@@ -1,0 +1,16 @@
+version: '3.2'
+
+services: 
+  app: 
+    image: my-node-app:latest
+    build:
+      context: .
+      dockerfile: ./docker/dev.win7.Dockerfile
+    ports: 
+      - '1338:3000'
+      - "9229:9229"
+    working_dir: /my-app-1
+    volumes:
+      - /projects/docker/node-app-1:/my-app-1
+      - /my-app-1/node_modules
+    command: "npm run start"
